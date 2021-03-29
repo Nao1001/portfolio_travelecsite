@@ -46,39 +46,43 @@ $user_product = $travelObj->user_product();
         <a class="nav-link" href="ContactUs.php">Contact Us</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <a class="btn btn-outline-primary my-2 my-sm-0" href="Registration.php">Sign Up</a>
-      <a class="btn btn-outline-success my-2 my-sm-0" href="login.php">Sign In</a>
-    </form>
+    <?php if(empty($_SESSION['login_id'])){
+      ?>
+     
+          <a class="btn btn-outline-primary my-2 my-sm-0" href="Registration.php">Sign Up</a>
+          <a class="btn btn-outline-success my-2 my-sm-0" href="login.php">Sign In</a>
+
+        <?php
+    } 
+    ?>
+    
   </div> <!-- collapse -->
 </nav> <!-- navbar -->
 
-<div class="container">
-
-  <div class="row">
-  <div class="col-sm-4">
-      <div class="card border-light" style="width: 18rem;">
-      <div class="card-body">
-      <?php foreach($user_product as $row): 
+<div class="container mt-5">
+<div class="row">
+   <?php foreach($user_product as $row): 
             $product_id = $row['product_id'];
             ?> 
-
-      <a href="product_list.php?product_id=<?php echo $product_id ?>">
-      <img src="images/<?php echo $row['product_image'] ?>" class="" alt="" style="width: 300px; height:300px; object-fit: contain;">
-
-      <div class="card-body">
-        <h5 class="card-title"><?php echo $row['product_name']; echo $row['product_price'] ?></h5>
-        <p class="card-text"><?php echo $row['short_description'] ?></p>
-        <a href="login.php?product_id=<?php echo $product_id ?>" class="btn btn-primary">Add Cart</a>
+  
+            <div class="card  col-3">
+              <div class="card-header">
+                  <a href="product_list.php?product_id=<?php echo $product_id ?>">
+                  <img src="images/<?php echo $row['product_image'] ?>" class="card-img-top" alt="" style="width: 150px; height:150px; object-fit: contain;">
+                  </a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><?php echo $row['product_name']; echo "<br>$ ".$row['product_price'] ?></h5>
+                <p class="card-text"><?php echo $row['short_description'] ?></p>
+        <a href="cart.php?product_id=<?php echo $product_id ?>" class="btn btn-primary">Add Cart</a>
         <a href="Product-list.php?product_id=<?php echo $product_id ?>" class="btn btn-info">See detail</a>
         
-      </div>
-      </a>
-      </div>
+        </div>
+        </div>
+ 
       <?php endforeach; ?>
-     </div>
-    </div>
-    </div>
+</div>
+</div>
  
 
 </div> <!-- card -->

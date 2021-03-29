@@ -18,16 +18,6 @@ if(isset($_POST['Register'])){
     echo "password dont match";
   } 
 
-  
-// }elseif(isset($_POST['update_user'])){
-
-//   $first_name = $_POST['f_name'];
-//   $last_name = $_POST['l_name'];
-//   $user_name = $_POST['display_name'];
-//   $email = $_POST['email'];
-//   $password = $_POST['password'];
-
-//   $travelObj->update_user($first_name,$last_name,$display_name,$email,$password);
 
 //user log in
 }elseif(isset($_POST['login'])){
@@ -76,6 +66,14 @@ if(isset($_POST['user_product'])){
   $short_description = $_POST['short_description'];
 
   $travelObj->user_product($product_name,$product_color,$product_price,$product_image,$description,$product_id,$short_description);
+}elseif(isset($_POST['confirm_order'])){
+  $order_quantity = $_POST['quantity'];
+  $prod_id = $_POST['id'];
+
+  echo $travelObj->proccess_order($prod_id,$order_quantity);
+
 }
+
+
 
 ?>

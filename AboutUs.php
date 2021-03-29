@@ -1,19 +1,7 @@
-<?php
-include 'ECTravel-action.php';
-
-$user_product = $travelObj->user_product();
-
-// echo "<pre>";
-// print_r($products_list);
-// //print_r is for developer, echo is for user
-// echo "<pre>";
-?>
-
-
 <!doctype html>
 <html lang="en">
   <head>
-    <title>HOME</title>
+    <title>About us</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -48,52 +36,23 @@ $user_product = $travelObj->user_product();
         <a class="nav-link" href="ContactUs.php">Contact Us</a>
       </li>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
       <a class="btn btn-outline-primary my-2 my-sm-0" href="Registration.php">Sign Up</a>
       <a class="btn btn-outline-success my-2 my-sm-0" href="login.php">Sign In</a>
+    </form>
   </div> <!-- collapse -->
 </nav> <!-- navbar -->
 
 
 <div class="box" style="position: relative;">
-<img src="./images/firstImage.jpg" class="img-fluid" alt="Responsive image" style="width:100%; height:80%; object-fit:cover;">
+<img src="./images/aboutus.jpg" class="img-fluid" alt="Responsive image" style="width:100%; height:80%; object-fit:cover;">
 </div>
 </div> <!-- first photo -->
 
-
-<div class="jumbotron mt-3">
-        <h2 class="lead text-center mb-3">Go on your own journey</h2>
-        <h2 class="lead text-center">All you need to take is these items</h2>
-</div>
-
-<!-- product -->
-<div class="container mt-5">
-<div class="row">
-   <?php foreach($user_product as $row): 
-            $product_id = $row['product_id'];
-            ?> 
-  
-            <div class="card  col-3">
-              <div class="card-header">
-                  <a href="product_list.php?product_id=<?php echo $product_id ?>">
-                  <img src="images/<?php echo $row['product_image'] ?>" class="card-img-top" alt="" style="width: 150px; height:150px; object-fit: contain;">
-                  </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><?php echo $row['product_name']; echo "<br>$ ".$row['product_price'] ?></h5>
-                <p class="card-text"><?php echo $row['short_description'] ?></p>
-                <a href="login.php?product_id=<?php echo $product_id ?>" class="btn btn-primary">Add Cart</a>
-                <a href="Product-list.php?product_id=<?php echo $product_id ?>" class="btn btn-info">See detail</a>
-              </div>
-            </div>
- 
-      <?php endforeach; ?>
-</div>
-</div>
-
-<div class="jumbotron mt-3" >
+<!-- About us -->
+<div class="jumbotron">
    <h2 class="lead text-center mb-3">About Us</h2>
-  </div>
-
+   </div>
 
 <div class="aboutus-section">
   <div class="container">
@@ -121,7 +80,7 @@ $user_product = $travelObj->user_product();
             </div>
           </div>
         </div>
-   
+        
         <div class="feature-box">
            <div class="clearfix">
             <div class="iconset">
@@ -133,7 +92,7 @@ $user_product = $travelObj->user_product();
           </div>
           </div>
         </div>
-                            
+                        
       <div class="feature-box">
         <div class="clearfix">
         <div class="iconset">
@@ -149,11 +108,11 @@ $user_product = $travelObj->user_product();
   </div>
 </div>
 </div>
-</div> -->
-
+</div>
+<!-- About us -->
 
 <!-- footer -->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark p-1">
+<nav class="navbar navbar-expand-md navbar-light bg-warning p-1">
   <button class="navbar-toggler" type="button" data-toggle="collapse" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

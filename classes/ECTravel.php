@@ -26,7 +26,8 @@ public function login($email,$password){
     $_SESSION['first_name'] = $row['first_name'];
     $_SESSION['last_name'] = $row['last_name'];
     $_SESSION['login_id'] = $row['user_id'];
-    header('location:Homepage-loggedin.php'); // go to homepage if there is no error
+    $_SESSION['display_name'] = $row['display_name'];
+    header('location:Homepage-loggedin.php'); 
   }else{
     echo 'Your email and password are not valid.';
 
@@ -118,36 +119,54 @@ public function user_product(){
 
 // call product_query method/function passing the product_id
 
-public function add_cart($product_id){
+public function proccess_order($product_id,$quantity){
   $sql ="SELECT * FROM products WHERE product_id='$product_id'";
   $result = $this->conn->query($sql);
 
-  if($result->num_rows > 0){
-    $container = array();
-    while($row = $result->fetch_assoc()){
-      // insert to cart table
-      // product id
-      // quantity = 1
-      // price
-      // subtotal
-      // user_id which you have to get from session
-      // status automatic X (not yet paid)
+  if($result->num_rows==1){
+    $row = $result->fetch_assoc();
+    $cart_product = $row['product_name'];
+    $cart_price = (int)$row['product_price'];
+    $cart_subtotal = $row['product_price'] * $quantity;
+    $cart_quantity = $quantity;
+    $user_id = $_SESSION['login_id'];
+    
 
-      $sql = "INSERT INTO Cart(cart_product,cart_price,cart_subtotal,cart_quantity,cart_status,user_id)VALUE('$cart_product','$cart_price','$cart_subtotal','$cart_quantity', '$cart_status','$user_id')";
+
+   
+      $sql = "INSERT INTO Cart(cart_product,cart_price,cart_subtotal,cart_quantity,cart_status,user_id)VALUE('$cart_product','$cart_price','$cart_subtotal','$cart_quantity', 'Paid','$user_id')";
        $result = $this->conn->query($sql);
 
-       if($result->num_rows == 1){
-        $row= $result->fetch_assoc();
-        $_SESSION['user_id'] = $row['user_id'];
+       if($result=='TRUE'){
+        echo "ORDER PROCESSED SUCCESSFULLY";
 
       }else{
-        echo '';
+        die('ERROR'.$this->conn->error);
     
       }
-    }
+    }  
 }
 
+public function user_account($user_id){
+  $sql ="SELECT * FROM Cart WHERE user_id='$user_id'";
+  $result = $this->conn->query($sql);
+
+  if($result->num_rows>0){
+    $container = array();
+    while($row = $result->fetch_assoc()){
+      $container[] = $row;
+
+    }
+    return $container;
+
+  }else{
+    return FALSE;
+
+  }
+
 }
+
+
 }
 
 ?>

@@ -1,4 +1,4 @@
-@import url('http://localhost:8888/march-adv-night/portfolio/Homepage.php');
+/* @import url('http://localhost:8888/march-adv-night/portfolio/Homepage.php');
 
 /* CSS RESET */
 /* *
@@ -9,10 +9,9 @@
   outline: none;
   box-sizing: border-box;
   text-decoration: none;
-  color: #312A26;
-} */
-.navbar {
+}
 
+.navbar {
 height: 80px;
 }
 
@@ -22,11 +21,17 @@ height: 80px;
 
 .box p {
 position: absolute;
+color: white;
 top: 0;
 left: 0;
 }
 
+.box img{
+  width: 100%;
+
+}
+
 p{
   
-}
+}  */
 

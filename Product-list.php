@@ -18,8 +18,8 @@ $product_id = $_GET['product_id'];
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-  <div class="container-fluid">
-    product list
+  <div class="container">
+    <h2 class="text-monospace">product list</h2>
   </div>
 
   <div class="container">
@@ -34,7 +34,7 @@ $product_id = $_GET['product_id'];
 
           <p>Color: <?php echo $product['product_color'] ?></p>
 
-          <p>Price: <?php echo $product['product_price'] ?></p>
+          <p>Price: $  <?php echo $product['product_price'] ?></p>
 
           <p>Description: <?php echo $product['product_description'] ?></p>
           
@@ -42,9 +42,9 @@ $product_id = $_GET['product_id'];
   <hr class="mt-5">
          <div class="row">
           <div class="col-6">
-          <a href="Cart.php" class="btn btn-outline-info">Add Cart</a>
+          <a href="Cart.php?product_id=<?php echo $product_id ?>" class="btn btn-outline-primary">Add Cart</a>
           </div>
-          <div class="col-6"><a href="" class="btn btn-outline-danger">Payment</a></div>
+          <div class="col-6"><a href=Product.php?user_id=<?php echo $user_id ?> class="btn btn-outline-dark">Back to Product</a></div>
          </div>
         </div>
       </div>

@@ -1,19 +1,19 @@
 <?php
  include 'ECTravel-action.php';
- if(empty($_SESSION['login_id'])){
-    header('location:login.php');
- }
-
-// echo $_SESSION['login_id'];
-
-
 	$product_id = $_GET['product_id'];
 	// include your travel class
 	// create object
  
 	$item = $travelObj->get_one_product($product_id);
 
+	print_r($item);
 
+	//$travelObj->add_cart($product_id);
+
+	// after inserting to cart table
+	// create a new public function to query (select)
+	// the items of the logged in user (session)
+	// you can now dipslay the items in your cart.php
 
 ?>
 
@@ -41,47 +41,42 @@
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	
 	<div class="cart-wrap">
-	<div class="container">
+		<div class="container">
 	        <div class="row">
-			    <div class="col-lg-10">
-			        <div class="main-heading">
-							<h2 class="text-monospace">Shopping Cart</h2>
-							</div>
-							
-			        <div class="table-cart">
-									<table class="table table-bordered table-secondary">
-										<thead>
-											<td>Name</td>
-											<td>Variant</td>
-											<td>Price</td>
-											<td>Description</td>
-											<td>Quantity</td>
-										</thead>
-										<tbody>
-											<td><?php echo $item['product_name'] ?></td>
-											<td><?php echo $item['product_color'] ?></td>
-											<td>$<?php echo $item['product_price'] ?></td>
-											<td><?php echo $item['short_description'] ?></td>
-											<td><form action="ECTravel-action.php" method="post">
-												<input type="hidden" name="id" value="<?php echo $item['product_id'] ?>" id="">
-												<input type="number" class="border-0" name="quantity" value="1" id="">
-										</td>
-										</tbody>
-									</table>
-								<br>
-								<button type="submit" name="confirm_order" class="btn btn-outline-secondary btn-block">CONFIRM ORDER</button>
-										</form>
 
-
-						
-			        </div>
-			        <!-- /.table-cart -->
-			    </div>
 			    <!-- /.col-lg-8 -->
-			   
-
+			    <div class="col-lg-4">
+			        <div class="cart-totals">
+			            <h3>Cart Totals</h3>
+			            <form action="#" method="get" accept-charset="utf-8">
+			                <table>
+			                    <tbody>
+			                        <tr>
+			                            <td>Subtotal</td>
+			                            <td class="subtotal">$2,589.00</td>
+			                        </tr>
+			                        <tr>
+			                            <td>Shipping</td>
+			                            <td class="free-shipping">Free Shipping</td>
+			                        </tr>
+			                        <tr class="total-row">
+			                            <td>Total</td>
+			                            <td class="price-total">$1,591.00</td>
+			                        </tr>
+			                    </tbody>
+			                </table>
+			                <div class="btn-cart-totals">
+			                    <a href="#" class="update round-black-btn" title="">Update Cart</a>
+			                    <a href="#" class="checkout round-black-btn" title="">Proceed to Payment</a>
+			                </div>
+			                <!-- /.btn-cart-totals -->
+			            </form>
+			            <!-- /form -->
+			        </div>
+			        <!-- /.cart-totals -->
+			    </div>
+			    <!-- /.col-lg-4 -->
 			</div>
 		</div>
 	</div>

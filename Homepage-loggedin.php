@@ -6,7 +6,6 @@ $user_product = $travelObj->user_product();
 
 // echo "<pre>";
 // print_r($products_list);
-// //print_r is for developer, echo is for user
 // echo "<pre>";
 ?>
 
@@ -26,19 +25,19 @@ $user_product = $travelObj->user_product();
   <body>
     
  
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="http://localhost:8888/march-adv-night/portfolio/Homepage.php"><img src="images/logo.png"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-md navbar-light bg-light p-1">
+  <a class="navbar-brand" href="http://localhost:8888/march-adv-night/portfolio/Homepage-loggedin.php"><img src="images/logo.png"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="Homepage.php">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Homepage-loggedin.php">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Products.php">Products</a>
+        <a class="nav-link" href="Product.php">Products</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="AboutUs.php">Aboust Us</a>
@@ -47,175 +46,137 @@ $user_product = $travelObj->user_product();
         <a class="nav-link" href="ContactUs.php">Contact Us</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <a class="btn btn-outline-primary my-2 my-sm-0" href="Homepage.php">Sign Out</a>
-    </form>
+    <a class="btn btn-outline-secondary my-2 my-sm-0" href="Myaccount.php">My Account</a>
+      <a class="btn btn-outline-primary my-2 my-sm-0" href="Signout.php">Sign Out</a>
   </div> <!-- collapse -->
 </nav> <!-- navbar -->
 
-<h3>Welcome to <?php echo $_SESSION['first_name']; echo $_SESSION['last_name']; ?></h3> 
+
+<h3>Welcome to <?php echo $_SESSION['display_name']; ?> !</h3> 
 <div class="box" style="position: relative;">
 <img src="./images/firstImage.jpg" class="img-fluid" alt="Responsive image" style="width:100%; hight:70%;">
-<p>Take a backpack and go on your own journey</p>
 </div> <!-- first photo -->
 
-<div class="jumbotron">
-        <h2 class="lead text-center">
-        All you need to take is these items
-        </h2>
-     </div>
 
-<div class="container">
+<div class="jumbotron mt-3">
+   <h2 class="lead text-center mb-3">Go on your own journey</h2>
+   <h2 class="lead text-center">All you need to take is these items</h2>
+</div>
 
-<!-- practice -->
-  <div class="row">
-  <div class="col-sm-4">
-      <div class="card border-light" style="width: 18rem;">
-      <div class="card-body">
-      <?php foreach($user_product as $row): 
+<!-- product -->
+<div class="container mt-5">
+<div class="row">
+   <?php foreach($user_product as $row): 
             $product_id = $row['product_id'];
             ?> 
-
-      <a href="product_list.php?product_id=<?php echo $product_id ?>">
-      <img src="images/<?php echo $row['product_image'] ?>" class="" alt="" style="width: 300px; height:300px; object-fit: contain;">
-
-      <div class="card-body">
-        <h5 class="card-title"><?php echo $row['product_name']; echo $row['product_price'] ?></h5>
-        <p class="card-text"><?php echo $row['short_description'] ?></p>
+  
+            <div class="card  col-3">
+              <div class="card-header">
+                  <a href="product_list.php?product_id=<?php echo $product_id ?>">
+                  <img src="images/<?php echo $row['product_image'] ?>" class="card-img-top" alt="" style="width: 150px; height:150px; object-fit: contain;">
+                  </a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><?php echo $row['product_name']; echo "<br>$ ".$row['product_price'] ?></h5>
+                <p class="card-text"><?php echo $row['short_description'] ?></p>
         <a href="Cart.php?product_id=<?php echo $product_id ?>" class="btn btn-primary">Add Cart</a>
         <a href="Product-list.php?product_id=<?php echo $product_id ?>" class="btn btn-info">See detail</a>
+        </div>
+    </div> 
+        <?php endforeach; ?>
+</div>
+</div>
+<!-- product -->
+
+<!-- About us -->
+<div class="jumbotron">
+   <h2 class="lead text-center mb-3">About Us</h2>
+   </div>
+
+<div class="aboutus-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-4 col-xs-4">
+        <div class="aboutus">
+              
+         <p class="aboutus-text">Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in.</p>
+        <p class="aboutus-text">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem</p>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-4 col-xs-4">
+        <div class="feature">
+          <div class="feature-box">
+            <div class="clearfix">
+              <div class="iconset">
+              <span class="glyphicon glyphicon-cog icon"></span>
+              </div>
+
+            <div class="feature-content">
+            <h4>Work with heart</h4>
+            <p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in.</p>
+            </div>
+          </div>
+        </div>
         
+        <div class="feature-box">
+           <div class="clearfix">
+            <div class="iconset">
+              <span class="glyphicon glyphicon-cog icon"></span>
+            </div>
+          <div class="feature-content">
+            <h4>Reliable services</h4>
+            <p>Donec vitae sapien ut libero venenatis faucibu. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt</p>
+          </div>
+          </div>
+        </div>
+                        
+      <div class="feature-box">
+        <div class="clearfix">
+        <div class="iconset">
+         <span class="glyphicon glyphicon-cog icon"></span>
+        </div>
+       <div class="feature-content">
+          <h4>Great support</h4>
+          <p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in.</p>
+        </div>
+        </div>
       </div>
-      </a>
-      </div>
-      <?php endforeach; ?>
-     </div>
     </div>
-    </div>
-    <!-- practice -->
-
-
-   
-<!-- <div class="row">
-  <div class="col-sm-3">
-      <div class="card border-light" style="width: 18rem;">
-      <div class="card-body">
-      <img src="./images/hikingShoes.jpg" class="bd-placeholder-img card-img-top" width="100%" height="180" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/></svg>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="Cart.php" class="btn btn-primary">Add Cart</a>
-        <a href="" class="btn btn-info">See detail</a>
-      </div>
-      </div>
-     </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="card border-light" style="width: 18rem;">
-      <div class="card-body">
-      <img src = "./images/hikingShoes.jpg" class="bd-placeholder-img card-img-top" width="100%" height="180" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/></svg>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Add Cart</a>
-        <a href="" class="btn btn-info">See detail</a>
-      </div>
-      </div>
-     </div>
-    </div>
-    
-
-    <div class="col-sm-3">
-      <div class="card border-light" style="width: 18rem;">
-      <div class="card-body">
-      <img src="./images/hikingShoes.jpg" class="bd-placeholder-img card-img-top" width="100%" height="180" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/></svg>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Add Cart</a>
-        <a href="" class="btn btn-info">See detail</a>
-      </div>
-      </div>
-     </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="card border-light" style="width: 18rem;">
-      <div class="card-body">
-      <img src = "./images/hikingShoes.jpg" class="bd-placeholder-img card-img-top" width="100%" height="180" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/></svg>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Add Cart</a>
-        <a href="" class="btn btn-info">See detail</a>
-      </div>
-      </div>
-     </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="card border-light" style="width: 18rem;">
-      <div class="card-body">
-      <img src = "./images/hikingShoes.jpg" class="bd-placeholder-img card-img-top" width="100%" height="180" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/></svg>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Add Cart</a>
-        <a href="" class="btn btn-info">See detail</a>
-      </div>
-      </div>
-     </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="card border-light" style="width: 18rem;">
-      <div class="card-body">
-      <img src = "./images/hikingShoes.jpg" class="bd-placeholder-img card-img-top" width="100%" height="180" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/></svg>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Add Cart</a>
-        <a href="" class="btn btn-info">See detail</a>
-      </div>
-      </div>
-     </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="card border-light" style="width: 18rem;">
-      <div class="card-body">
-      <img src = "./images/hikingShoes.jpg" class="bd-placeholder-img card-img-top" width="100%" height="180" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/></svg>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Add Cart</a>
-        <a href="" class="btn btn-info">See detail</a>
-      </div>
-      </div>
-     </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="card border-light" style="width: 18rem;">
-      <div class="card-body">
-      <img src = "./images/hikingShoes.jpg" class="bd-placeholder-img card-img-top" width="100%" height="180" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/></svg>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="Cart.php" class="btn btn-primary">Add Cart</a>
-        <a href="" class="btn btn-info">See detail</a>
-      </div>
-      </div>
-     </div>
-    </div> -->
-
-
+  </div>
+</div>
+</div>
+</div>
 </div> <!-- card -->
 </div> <!-- row -->
 </div>
 </div>  
+<!-- product -->
 
+<!-- footer -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark p-1 mt-4">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="Homepage-loggedin.php">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Product.php">Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="AboutUs.php">Aboust Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ContactUs.php">Contact Us</a>
+      </li>
+    </ul>
+  </div> <!-- collapse -->
+</nav> <!-- footer -->
 
 
       
